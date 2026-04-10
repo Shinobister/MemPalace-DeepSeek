@@ -22,3 +22,9 @@
 - **Artifacts**: Remote repo at https://github.com/Shinobister/MemPalace-DeepSeek, branch main tracking origin/main
 - **Assumptions**: GitHub credentials stored in git-credentials allowed API access; default branch "main" matches local
 - **Knowledge**: Repository creation successful; remote sync workflow operational; mempalace wake-up shows project context
+
+**AAAK Entry: Complete Workflow Documentation**
+- **Action**: Created comprehensive workflow guide covering pre-session setup, startup procedure, plan mode protocol, task execution, session closure, maintenance, and relaunch instructions
+- **Artifacts**: Updated CLAUDE.md with 281-line comprehensive guide, committed and pushed to GitHub
+- **Assumptions**: User needs clear step-by-step procedures for MemPalace integration with Claude Code; documentation should cover full lifecycle from startup to maintenance
+- **Knowledge**: Workflow documentation enables consistent use of memory-first pattern; includes troubleshooting and performance optimization for DeepSeek 128k context window
