@@ -11,6 +11,7 @@ This project configures MemPalace as a memory management system integrated with 
 - **DeepSeek Optimization**: Context window management for 128k limit
 - **AAAK Shorthand**: Structured memory entries using Action, Artifacts, Assumptions, Knowledge
 - **Git Integration**: Version control with proper ignores
+- **Windows Automation**: Batch and PowerShell scripts for quick startup with splash screens
 
 ## Setup
 1. **Python Environment**: Requires Python 3.14+ and mempalace package
@@ -38,13 +39,36 @@ mempalace status
 mempalace wake-up
 ```
 
+## Automation
+
+### Windows Startup Scripts
+- **`MemPalace-Claude.bat`**: Batch file with configuration summary and Claude launch
+- **`MemPalace-Splash.ps1`**: PowerShell script with colored output and countdown timer
+
+**Usage**: Double-click either file to start Claude Code with the MemPalace project directory pre-set.
+
+### Quick Startup Workflow
+1. Run automation script (opens Claude Code with correct working directory)
+2. When Claude Code opens, run:
+   ```bash
+   mempalace_status
+   mempalace wake-up
+   ```
+3. Begin work using memory-first search pattern
+
 ## Project Structure
 ```
 MemPalace/
 ├── .gitignore          # Git ignore patterns
-├── CLAUDE.md           # Claude instructions
+├── CLAUDE.md           # Claude instructions (complete workflow guide)
 ├── README.md           # Project documentation
 ├── MCP_SETUP_PROMPT.md # MCP setup requirements (for separate project)
+├── MCP_GMAIL_CALENDAR_SETUP_PROMPT.md # Detailed prompt for Gmail/Calendar MCP setup
+├── MemPalace-Claude.bat # Windows batch automation script
+├── MemPalace-Splash.ps1 # PowerShell splash screen script
+├── PROJECT_CONTEXT.md   # AAAK entries and project history
+├── mempalace.yaml      # MemPalace configuration
+├── entities.json       # Detected project entities
 └── .mempalace/         # Memory database (gitignored)
 ```
 
