@@ -291,3 +291,134 @@ mempalace search "workflow"
 PYTHONIOENCODING=utf-8 python -m mempalace status
 claude mcp list
 ```
+
+---
+
+## 🤖 Automation & Shortcuts
+
+### Windows Startup Automation
+
+#### Option 1: Desktop Shortcut with Splash Screen
+Create `C:\Users\Don\Desktop\MemPalace-Claude.bat`:
+```batch
+@echo off
+echo #############################################
+echo #   MemPalace DeepSeek Integration         #
+echo #   Loading Claude Code with Memory Layer  #
+echo #############################################
+echo.
+echo Initializing MemPalace MCP servers...
+echo Project directory: C:\Users\Don\Documents\Claude\MemPalace
+echo.
+timeout /t 2 /nobreak >nul
+start "" "C:\Program Files\Claude\Claude.exe" --working-dir "C:\Users\Don\Documents\Claude\MemPalace"
+```
+
+**To disable**: Simply delete or rename the `.bat` file.
+
+#### Option 2: Windows Startup Folder (Auto-run on Login)
+1. Press `Win+R`, type `shell:startup`, press Enter
+2. Create shortcut to Claude.exe with working directory set to MemPalace folder
+3. Create accompanying splash script if desired
+
+#### Option 3: PowerShell Splash Screen with Progress
+Create `C:\Users\Don\Desktop\MemPalace-Splash.ps1`:
+```powershell
+Write-Host "=============================================" -ForegroundColor Cyan
+Write-Host "   MemPalace DeepSeek Integration          " -ForegroundColor Yellow
+Write-Host "   Starting Claude Code with Memory Layer  " -ForegroundColor Yellow
+Write-Host "=============================================" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "✓ MCP Servers: mempalace, playwright" -ForegroundColor Green
+Write-Host "✓ Memory Database: ~/.mempalace/" -ForegroundColor Green  
+Write-Host "✓ Project: MemPalace-DeepSeek" -ForegroundColor Green
+Write-Host ""
+Write-Host "Starting Claude Code in 3 seconds..." -ForegroundColor Gray
+Start-Sleep -Seconds 3
+Start-Process "C:\Program Files\Claude\Claude.exe" -WorkingDirectory "C:\Users\Don\Documents\Claude\MemPalace"
+```
+
+### Claude Code Custom Commands
+
+#### Create Quick Startup Command
+Add to your session startup (run once, then it's in history):
+```bash
+# Create alias for quick startup
+alias mempalace-start='cd C:\Users\Don\Documents\Claude\MemPalace && mempalace_status && mempalace wake-up'
+```
+
+**Usage**: After opening Claude Code, just type `mempalace-start`
+
+#### Create Hookify Rule for Auto-Startup (Experimental)
+Create `.claude/hookify.mempalace-start.local.md`:
+```markdown
+---
+name: mempalace-auto-start  
+enabled: true
+event: prompt
+pattern: ^(?!.*mempalace).*$
+action: warn
+priority: low
+---
+
+🔍 **MemPalace Context Not Loaded**
+
+Remember to run MemPalace startup commands:
+```bash
+mempalace_status
+mempalace wake-up
+```
+
+Run `/mempalace-quickstart` to load context automatically.
+```
+
+### Custom Slash Commands Template
+
+#### Quick Startup Command
+Create a text file with the startup sequence, then paste:
+```
+/mempalace-quickstart
+cd C:\Users\Don\Documents\Claude\MemPalace
+mempalace_status
+mempalace wake-up
+PYTHONIOENCODING=utf-8 python -m mempalace status
+```
+
+**Save as template**: Keep in a text file for easy copy-paste.
+
+### Recommended Workflow
+
+1. **For regular use**: Create desktop shortcut with splash screen (Option 1)
+2. **For quick sessions**: Use `mempalace-start` alias after opening Claude Code  
+3. **For automation**: Place shortcut in Startup folder (Option 2)
+
+### Turning Off Automation
+
+| Method | Disable Procedure |
+|--------|-------------------|
+| Batch file shortcut | Delete `.bat` file from desktop |
+| Startup folder | Remove shortcut from `shell:startup` |
+| PowerShell script | Delete `.ps1` file |
+| Hookify rule | Set `enabled: false` or delete `.md` file |
+
+### Claude Code Integration Notes
+
+- **MCP servers are global**: Once configured, they persist across sessions
+- **Memory database is persistent**: `.mempalace/` directory maintains state
+- **Project context loads on demand**: Use `mempalace wake-up` when needed
+- **No session auto-start hooks**: Claude Code doesn't support auto-executing commands on startup
+
+### Best Practice Setup
+
+1. **Create desktop shortcut** with working directory set
+2. **Use command history**: After first manual startup, commands are in history for up-arrow recall
+3. **Create text template** with startup sequence for quick copy-paste
+4. **Regular maintenance**: Run weekly compression and updates
+
+```bash
+# One-time setup for quick recall
+cd C:\Users\Don\Documents\Claude\MemPalace
+mempalace_status
+mempalace wake-up
+# These commands will be in your history for easy recall
+```
