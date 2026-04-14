@@ -1,81 +1,57 @@
-# MemPalace DeepSeek Integration
+# Claude Code DeepSeek Integration Project
 
-A DeepSeek-optimized environment using MemPalace as the primary memory layer for Claude Code sessions.
+A project workspace for Claude Code with DeepSeek-V3.1 model integration.
 
 ## Overview
-This project configures MemPalace as a memory management system integrated with Claude Code and DeepSeek-V3.1. The goal is to stay within DeepSeek's 128k context window by using semantic memory search instead of bulk file reading.
+This repository serves as a workspace for Claude Code sessions using the DeepSeek-V3.1 model. It was previously configured with MemPalace memory management system, which has been decommissioned as of April 13, 2026.
 
-## Features
-- **MemPalace MCP Server**: Integrated as a Claude Code tool
-- **Memory-First Workflow**: Prioritize `mempalace_search` over file reading
-- **DeepSeek Optimization**: Context window management for 128k limit
-- **AAAK Shorthand**: Structured memory entries using Action, Artifacts, Assumptions, Knowledge
-- **Git Integration**: Version control with proper ignores
-- **Windows Automation**: Batch and PowerShell scripts for quick startup with splash screens
+## Current Configuration
+- **Claude Code**: Latest version with DeepSeek-V3.1 model integration
+- **MCP Servers**: Playwright (configured, requires installation)
+- **Python**: System Python 3.14.3
+- **Git**: Repository synchronized with GitHub
 
-## Setup
-1. **Python Environment**: Requires Python 3.14+ and mempalace package
-2. **MCP Server**: Already configured via `claude mcp add mempalace`
-3. **Memory Database**: Run `mempalace init` to initialize project memory
+## Project History
+- **April 2026**: Initial integration of MemPalace memory system
+- **April 13, 2026**: Complete surgical reversion of MemPalace (see [DECOMMISSION.md](DECOMMISSION.md))
 
 ## Usage
-See [CLAUDE.md](CLAUDE.md) for Claude-specific instructions.
+This directory is configured as a Claude Code working directory with:
+- Git repository tracking
+- Project-specific instructions in [CLAUDE.md](CLAUDE.md)
+- Documentation of the MemPalace decommissioning process
 
-### Basic Commands
-```bash
-# Initialize memory database
-mempalace init
-
-# Mine project files into memory
-mempalace mine .
-
-# Search for relevant context
-mempalace search "query"
-
-# Check memory status
-mempalace status
-
-# Get wake-up context
-mempalace wake-up
-```
-
-## Automation
-
-### Windows Startup Scripts
-- **`MemPalace-Claude.bat`**: Batch file with configuration summary and Claude launch
-- **`MemPalace-Splash.ps1`**: PowerShell script with colored output and countdown timer
-
-**Usage**: Double-click either file to start Claude Code with the MemPalace project directory pre-set.
-
-### Quick Startup Workflow
-1. Run automation script (opens Claude Code with correct working directory)
-2. When Claude Code opens, run:
-   ```bash
-   mempalace_status
-   mempalace wake-up
-   ```
-3. Begin work using memory-first search pattern
+### Basic Workflow
+1. Open Claude Code with this directory as the working directory
+2. Follow instructions in [CLAUDE.md](CLAUDE.md) for project-specific guidance
+3. Use standard Claude Code tools and workflows
 
 ## Project Structure
 ```
 MemPalace/
 ├── .gitignore          # Git ignore patterns
-├── CLAUDE.md           # Claude instructions (complete workflow guide)
+├── CLAUDE.md           # Claude instructions (updated workflow guide)
 ├── README.md           # Project documentation
+├── DECOMMISSION.md     # MemPalace removal documentation
 ├── MCP_SETUP_PROMPT.md # MCP setup requirements (for separate project)
 ├── MCP_GMAIL_CALENDAR_SETUP_PROMPT.md # Detailed prompt for Gmail/Calendar MCP setup
-├── MemPalace-Claude.bat # Windows batch automation script
-├── MemPalace-Splash.ps1 # PowerShell splash screen script
 ├── PROJECT_CONTEXT.md   # AAAK entries and project history
-├── mempalace.yaml      # MemPalace configuration
-├── entities.json       # Detected project entities
-└── .mempalace/         # Memory database (gitignored)
+└── .claude/            # Claude Code project configuration
 ```
 
 ## MCP Configuration
-- **MemPalace**: `python -m mempalace.mcp_server` (configured)
-- **Gmail/Calendar**: Requires authentication (separate project)
 - **Playwright**: To be installed via `claude mcp add playwright`
+- **MemPalace**: Decommissioned and removed (see DECOMMISSION.md)
+
+## Decommissioning Details
+The MemPalace memory system has been completely removed via surgical reversion:
+- Python package uninstalled globally
+- MCP server configuration removed from Claude Code
+- Memory database deleted (except locked ChromaDB files pending reboot)
+- Configuration files and automation scripts removed
+- Documentation updated to reflect current state
+
+For complete removal details, see [DECOMMISSION.md](DECOMMISSION.md).
 
 ## License
 MIT
